@@ -1,18 +1,18 @@
-# OCR Web Application
+# SmartSpeech OCR Web Application
 
-A web application built with FastHTML and Google GenAI for optical character recognition (OCR) from uploaded images and PDF files.
+A web application that uses Google's Gemini AI to perform OCR (Optical Character Recognition) on uploaded images and PDFs.
 
 ## Features
 
-- Upload images (PNG, JPG, JPEG, GIF) or PDF files
-- Extract text using Google GenAI's Gemini model
-- Clean, responsive web interface
-- Docker support with Debian base image
+- Upload images (JPG, PNG, GIF, BMP) and PDFs
+- AI-powered text extraction using Google Gemini API
+- Modern, responsive web interface
+- Docker support for easy deployment
 
 ## Prerequisites
 
 - Python 3.11+
-- Docker (optional)
+- Google Gemini API key
 
 ## Installation
 
@@ -23,44 +23,51 @@ A web application built with FastHTML and Google GenAI for optical character rec
 pip install -r requirements.txt
 ```
 
-2. Run the application:
+2. Set your Google API key:
+```bash
+export GOOGLE_API_KEY="your-actual-api-key-here"
+```
+
+3. Run the application:
 ```bash
 python app.py
 ```
 
 The application will be available at `http://localhost:5000`
 
-### Docker
+### Docker Deployment
 
 1. Build the Docker image:
 ```bash
-docker build -t ocr-app .
+docker build -t smartpeech-ocr .
 ```
 
 2. Run the container:
 ```bash
-docker run -p 5000:5000 ocr-app
+docker run -p 5000:5000 -e GOOGLE_API_KEY="your-actual-api-key-here" smartpeech-ocr
 ```
 
 ## Usage
 
-1. Open your browser and navigate to `http://localhost:5000`
-2. Click "Choose file" and select an image or PDF file
+1. Open your web browser and navigate to `http://localhost:5000`
+2. Upload an image or PDF file using the drag-and-drop interface or file picker
 3. Click "Extract Text" to process the file
-4. View the extracted text on the results page
+4. View the extracted text in the results area
 
-## API Key
+## API Endpoints
 
-The application uses the provided Google GenAI API key. Make sure you have proper permissions for the Gemini API.
-
-## File Support
-
-- **Images**: PNG, JPG, JPEG, GIF
-- **PDFs**: Multi-page PDF support with individual page processing
+- `GET /` - Main web interface
+- `POST /upload` - Upload and process files
 
 ## Dependencies
 
-- `fasthtml`: Web framework
-- `google-generativeai`: Google GenAI integration
-- `Pillow`: Image processing
-- `PyMuPDF`: PDF processing
+- `fasthtml` - Fast web framework
+- `google-genai` - Google Gemini AI client
+- `Pillow` - Image processing
+- `PyMuPDF` - PDF processing
+
+## Notes
+
+- The application uses port 5000 as specified
+- Make sure to replace the placeholder API key with your actual Google Gemini API key
+- The Docker image is based on Debian and includes all necessary system dependencies
