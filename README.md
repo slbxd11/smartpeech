@@ -72,3 +72,4 @@ docker run -p 5000:5000 -e GOOGLE_API_KEY="your-actual-api-key-here" smartpeech-
 - Make sure to replace the placeholder API key with your actual Google Gemini API key
 - The Docker image is based on Debian and includes all necessary system dependencies
 # smartpeech
+# Smartpeech
